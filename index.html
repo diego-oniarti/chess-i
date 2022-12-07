@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess</title>
+</head>
+<body>
+    <p>
+        async function wait(n){
+            let res;
+            a = new Promise((reso,err)=>{
+                res=reso;
+            });
+            setTimeout(res,n);
+            await a;
+        }
+        
+        fetch('https://chess-test-2357.herokuapp.com/newGame')
+            .then((response) => {
+                return response.json();
+            }).then(async (data) => {
+                console.log(data);
+                if (data.status=="ok"){
+                    while (!game.isGameOver()){
+                        while(game.getTurn()!=game.getPlayingAs()){
+                            await wait(1000);
+                        }
+                        res = await fetch('https://chess-test-2357.herokuapp.com/play?FEN='+game.getFEN());
+                        data = await res.json();
+                        console.log(data);
+                        game.move(data.move);
+                        await wait(1000);
+                    }
+                }else{
+                    console.log("Errore");
+                }
+            });
+        
+    </p>
+    <br/>
+    <p>
+        async function wait(n){let res;a=new Promise((reso,err)=>{res=reso;});setTimeout(res,n);await a;}game=document.getElementsByTagName('chess-board')[0].game;fetch('https://chess-test-2357.herokuapp.com/newGame?elo=20').then((response)=>{return response.json();}).then(async (data)=>{console.log(data);if(data.status=="ok"){while(!game.isGameOver()){while(game.getTurn()!=game.getPlayingAs()){await wait(1000);}res=await fetch('https://chess-test-2357.herokuapp.com/play?FEN='+game.getFEN());data=await res.json();console.log(">> "+data.move+" <<");game.markings.addOne({data:{from:data.move.slice(0,2),to:data.move.slice(2,4)},type:'arrow',persistent:false,node:true});while(game.getTurn()==game.getPlayingAs()){await wait(500);}}}else{console.log("Errore");}});
+    </p>
+    <br/>
+    <p>by Diego Oniarti</p>
+</body>
+</html>
