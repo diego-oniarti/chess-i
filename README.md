@@ -12,3 +12,5 @@
 - **/play?FEN=rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1**
     il motore ritorna la mossa ottimale dato lo stato della board
     ritorno: {move: "a1b2"}
+    
+[prova qui](https://chess2357.onrender.com/)
