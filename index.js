@@ -97,10 +97,6 @@ app.get('/play', async (req, res) => {
         .catch((err) => {
             res.json({ err: 'Missing channel' });
         });
-    // Send a message to the bot with the `ID play` and the values of the `FEN` and `movetime` query parameters
-    channel.send(
-        `ID play\n${req.query.FEN}\n${req.query.movetime || 'null'}`
-    );
 });
 
 app.get('/move', async (req, res) => {
