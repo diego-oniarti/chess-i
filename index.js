@@ -101,8 +101,6 @@ app.get('/play', async (req, res) => {
     channel.send(
         `ID play\n${req.query.FEN}\n${req.query.movetime || 'null'}`
     );
-}).catch((err) => {
-    res.json({ err: 'Missing channel' });
 });
 
 app.get('/move', async (req, res) => {
